@@ -4,6 +4,7 @@ Tests for models.
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
+
 class ModelTest(TestCase):
     """Test models."""
 
@@ -12,8 +13,8 @@ class ModelTest(TestCase):
         email = 'test@example.com'
         password = 'testpass123'
         user = get_user_model().objects.create_user(
-            email = email,
-            password = password
+            email=email,
+            password=password,
         )
         self.assertEqual(user.email, email)
         self.assertTrue(user.check_password(password))
@@ -29,7 +30,7 @@ class ModelTest(TestCase):
         for email, expected in sample_emails:
             user = get_user_model().objects.create_user(email, 'sample123')
             self.assertEqual(user.email, expected)
-    
+
     def test_new_user_without_email_raises_error(self):
         """Test that creating a user without email raises a ValueError"""
         with self.assertRaises(ValueError):
